@@ -1,0 +1,58 @@
+# config
+# model
+## support SegNet_AlexNet, SegNet_VGG, SegNet_ResNet18, SegNet_ResNet34, SegNet_ResNet50, SegNet_ResNet101, SegNet_ResNet152
+## FPN_ResNet18, FPN_ResNet50, FPN_ResNet101, FPN_ResNet34, FPN_ResNet152
+## FCN_AlexNet, FCN_VGG, FCN_ResNet18, FCN_ResNet50, FCN_ResNet101, FCN_ResNet34, FCN_ResNet152
+## UNet_VGG
+#### model configuration for UNet_1
+model_name: UNet # choose from FPN, FCN, SegNet, UNet
+backbone: VGG # choose from AlexNet, VGG, ResNet18, ResNet50, ResNet101
+#### reversible regression model
+rev_model: True # use model_2 or not
+#### model configuration for UNet_2
+model_2_name: UNet
+backbone_2: VGG
+
+# dataset path
+# data_root: /mnt/zhengxiaohu_data/IJCNN/data_left_1/
+# data_root: /mnt/zhengxiaohu_data/IJCNN/data_left_1_006_uniform/
+# data_root: /mnt/zhengxiaohu_data/IJCNN/data_left_1_01/
+data_root: /mnt/zhengxiaohu_data/IJCNN/data_left_1_006/
+# data_root: /mnt/zhengxiaohu_data/IJCNN/data_left_1_006_right/
+# data_root: /mnt/zhengxiaohu_data/IJCNN/data_left_1_02_uniform/
+
+
+# train/val set
+train_list: train/train_val.txt
+
+# test set
+test_list: test/test.txt
+
+# dataset format: mat or h5
+data_format: mat
+batch_size: 5
+max_epochs: 1000
+lr: 0.01
+
+# which gpu to use
+gpu: 2 # 0 cpu, 1 gpu:0, 2 gpu:1
+val_check_interval: 1.0
+
+# num_workers in dataloader
+num_workers: 1
+
+# preprocessing of data
+## input
+input_size: 200
+mean_layout: 298
+std_layout: 50
+
+## output
+mean_heat: 298
+std_heat: 50
+
+mode: predict #train #plot #predict #data_noise
+
+# 11:0.01,  14:0.006_right,  26/261: 0.006
+# 20:0.006_uniform,  27:0.02_uniform
+test_check_num: 26
